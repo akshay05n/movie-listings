@@ -38,7 +38,7 @@ function App() {
       ></NavBar>
       <div
         id="scrollTarget"
-        className="bg-black max-h-screen overflow-auto pt-10"
+        className="bg-black max-h-screen overflow-auto pt-12"
       >
         <InfiniteScroll
           dataLength={movies?.length}

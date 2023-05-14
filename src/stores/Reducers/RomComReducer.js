@@ -8,11 +8,13 @@ const initialState = {
 
 const romComReducer = createReducer(initialState, (builder) => {
   builder.addCase(loadRomComMovies, (state, action) => {
-    state.romComMovies = [
-      ...action.payload?.previousMovies,
-      ...action.payload?.newMovies,
-    ];
-    state.totalMovieItems = action.payload?.totalMovieItems;
+    if (state.romComMovies.length < action.payload?.totalMovieItems) {
+      state.romComMovies = [
+        ...action.payload?.previousMovies,
+        ...action.payload?.newMovies,
+      ];
+      state.totalMovieItems = action.payload?.totalMovieItems;
+    }
   });
 });
 

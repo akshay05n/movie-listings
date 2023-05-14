@@ -14,6 +14,20 @@ const NavBar = ({ onDataChange, onSearchInputClick }) => {
     onSearchInputClick(isSearching);
   };
 
+  const onEscape = function (action) {
+    window &&
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          action();
+        }
+      });
+  };
+
+  onEscape(() => {
+    setSearchValue("");
+    handleSearchInputClick(false);
+  });
+
   useEffect(() => {
     if (searchValue !== "") {
       const filteredData = romComMovies.filter((value) => {

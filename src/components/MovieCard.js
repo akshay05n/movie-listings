@@ -15,10 +15,10 @@ const MovieCard = ({ name, poster }) => {
         <img
           src={imgSrc}
           alt="poster"
-          className="w-full h-full"
+          className="w-full h-full pointer-events-none"
           onError={onError}
         />
-        <span className="text-white">{name}</span>
+        <span className="text-white mt-2 mb-7">{name}</span>
       </div>
     </div>
   );
