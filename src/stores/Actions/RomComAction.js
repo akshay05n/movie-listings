@@ -17,12 +17,12 @@ export const fetchRomComMovies =
     }
 
     const newMovies = fileData["page"]["content-items"]["content"];
-    const totalContentItems = fileData["page"]["total-content-items"];
+    const totalMovieItems = fileData["page"]["total-content-items"];
     dispatch(
       loadRomComMovies({
         previousMovies,
         newMovies,
-        totalContentItems,
+        totalMovieItems,
       })
     );
   };

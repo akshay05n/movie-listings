@@ -3,6 +3,7 @@ import { loadRomComMovies } from "../Actions/RomComAction";
 
 const initialState = {
   romComMovies: [],
+  totalMovieItems: 0,
 };
 
 const romComReducer = createReducer(initialState, (builder) => {
@@ -11,6 +12,7 @@ const romComReducer = createReducer(initialState, (builder) => {
       ...action.payload?.previousMovies,
       ...action.payload?.newMovies,
     ];
+    state.totalMovieItems = action.payload?.totalMovieItems;
   });
 });
 
