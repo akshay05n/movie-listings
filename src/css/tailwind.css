@@ -12,3 +12,21 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0
+  ); /* set the background color and transparency */
+  z-index: 100; /* set a higher z-index value */
+  background-image: url("/public/images/nav_bar.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

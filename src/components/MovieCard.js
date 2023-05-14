@@ -14,8 +14,8 @@ const MovieCard = ({ name, poster }) => {
       >
         <img
           src={imgSrc}
-          className="w-full h-full"
           alt="poster"
+          className="w-full h-full"
           onError={onError}
         />
         <span className="text-white">{name}</span>

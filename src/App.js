@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchRomComMovies } from "./stores/Actions/RomComAction";
 import MovieCard from "./components/MovieCard";
+import NavBar from "./components/NavBar";
 
 function App() {
   const dispatch = useDispatch();
 
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [isSeaching, setIsSearching] = useState(false);
 
   const { romComMovies, totalMovieItems } = useSelector((state) => ({
     romComMovies: state?.romComReducer?.romComMovies,
@@ -19,18 +21,31 @@ function App() {
     setMovies(newData);
   };
 
+  const handleSearchInputClick = (dataFromNavBar) => {
+    setIsSearching(dataFromNavBar);
+  };
+
   useEffect(() => {
     dispatch(fetchRomComMovies(movies, page));
     handleDataChange(romComMovies);
   }, [JSON.stringify(romComMovies), page]);
 
   return (
-    <div className="bg-black">
-      <div id="scrollTarget" className="max-h-screen overflow-auto">
+    <div>
+      <NavBar
+        onDataChange={handleDataChange}
+        onSearchInputClick={handleSearchInputClick}
+      ></NavBar>
+      <div
+        id="scrollTarget"
+        className="bg-black max-h-screen overflow-auto pt-10"
+      >
         <InfiniteScroll
           dataLength={movies?.length}
           next={() => setPage(page + 1)}
-          hasMore={movies?.length < totalMovieItems ? true : false}
+          hasMore={
+            !isSeaching && movies?.length < totalMovieItems ? true : false
+          }
           scrollableTarget="scrollTarget"
         >
           <div className="grid grid-cols-3 gap-3 p-3 overflow-auto ">
@@ -38,8 +53,8 @@ function App() {
               movies.map((movie, index) => {
                 return (
                   <MovieCard
-                    key={`${movie?.name}${index + 1}`}
-                    name={movie?.name}
+                    key={`${movie?.["name"]}${index + 1}`}
+                    name={movie?.["name"]}
                     poster={movie?.["poster-image"]}
                   />
                 );
